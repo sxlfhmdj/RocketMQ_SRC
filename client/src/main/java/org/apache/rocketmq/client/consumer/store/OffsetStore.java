@@ -16,15 +16,20 @@
  */
 package org.apache.rocketmq.client.consumer.store;
 
-import java.util.Map;
-import java.util.Set;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.remoting.exception.RemotingException;
 
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Offset store interface
+ *
+ * 消费进度库接口：
+ * 1、本地消费进度库：对于广播消费，消费进度是存储在customer磁盘上
+ * 2、远程消费进度库：对于集群消费，消费进度是存储在远程broker上
  */
 public interface OffsetStore {
     /**
@@ -55,6 +60,8 @@ public interface OffsetStore {
     /**
      * Persist all offsets,may be in local storage or remote name server
      *
+     * 持久化所有的消费进度
+     * 可能在consumer本地，或者在远程域名服务器name server
      * @param mqs
      */
     void persistAll(final Set<MessageQueue> mqs);

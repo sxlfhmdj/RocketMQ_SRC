@@ -16,8 +16,6 @@
  */
 package org.apache.rocketmq.client.producer;
 
-import java.util.Collection;
-import java.util.List;
 import org.apache.rocketmq.client.ClientConfig;
 import org.apache.rocketmq.client.QueryResult;
 import org.apache.rocketmq.client.Validators;
@@ -35,17 +33,26 @@ import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.remoting.RPCHook;
 import org.apache.rocketmq.remoting.exception.RemotingException;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * This class is the entry point for applications intending to send messages.
+ *
+ * 这个类是一个应用程序准备发送消息的功能点
  * </p>
  *
  * It's fine to tune fields which exposes getter/setter methods, but keep in mind, all of them should work well out of
  * box for most scenarios.
+ *
+ *
  * </p>
  *
  * This class aggregates various <code>send</code> methods to deliver messages to brokers. Each of them has pros and
  * cons; you'd better understand strengths and weakness of them before actually coding.
  * </p>
+ *
+ * 这个类囊括了各种传递给brokers的发送方法，他们中的每一个都有利弊和优缺，在编码之前，你最好先了解他们的优缺点
  *
  * <p>
  *     <strong>Thread Safety:</strong> After configuring and starting process, this class can be regarded as thread-safe

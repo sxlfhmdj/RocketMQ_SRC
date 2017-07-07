@@ -16,14 +16,19 @@
  */
 package org.apache.rocketmq.client.consumer;
 
-import java.util.Set;
 import org.apache.rocketmq.common.message.MessageQueue;
+
+import java.util.Set;
 
 /**
  * A MessageQueueListener is implemented by the application and may be specified when a message queue changed
+ *
+ * 应用实现消息队列监听，可以在消息队列更改时被指定
  */
 public interface MessageQueueListener {
     /**
+     * 消息队列被改变
+     *
      * @param topic message topic
      * @param mqAll all queues in this message topic
      * @param mqDivided collection of queues,assigned to the current consumer

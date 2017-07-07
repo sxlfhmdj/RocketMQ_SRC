@@ -16,19 +16,26 @@
  */
 package org.apache.rocketmq.client.consumer;
 
-import java.util.Set;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.remoting.exception.RemotingException;
 
+import java.util.Set;
+
 /**
  * Pulling consumer interface
+ *
+ * 拉取中的消费者接口
  */
 public interface MQPullConsumer extends MQConsumer {
     /**
      * Start the consumer
+     *
+     * 启动消费者（拉取）
+     *
+     * 初始化defaultMQPullConsumerImpl中的属性
      *
      * @throws MQClientException
      */
@@ -36,11 +43,15 @@ public interface MQPullConsumer extends MQConsumer {
 
     /**
      * Shutdown the consumer
+     *
+     * 停止消费者（拉取）
      */
     void shutdown();
 
     /**
      * Register the message queue listener
+     *
+     * 注册消息队列监听器
      *
      * @param topic
      * @param listener
@@ -49,6 +60,8 @@ public interface MQPullConsumer extends MQConsumer {
 
     /**
      * Pulling the messages,not blocking
+     *
+     * 拉取消息，不阻止
      *
      * @param mq from which message queue
      * @param subExpression subscription expression.it only support or operation such as "tag1 || tag2 || tag3" <br> if null or * expression,meaning subscribe
@@ -68,6 +81,7 @@ public interface MQPullConsumer extends MQConsumer {
     /**
      * Pulling the messages in the specified timeout
      *
+     *
      * @param mq
      * @param subExpression
      * @param offset
@@ -86,6 +100,8 @@ public interface MQPullConsumer extends MQConsumer {
     /**
      * Pulling the messages in a async. way
      *
+     * 异步拉取消息
+     *
      * @param mq
      * @param subExpression
      * @param offset
@@ -101,6 +117,8 @@ public interface MQPullConsumer extends MQConsumer {
 
     /**
      * Pulling the messages in a async. way
+     *
+     * 异步拉取消息
      *
      * @param mq
      * @param subExpression
@@ -119,6 +137,8 @@ public interface MQPullConsumer extends MQConsumer {
     /**
      * Pulling the messages,if no message arrival,blocking some time
      *
+     * 拉取消息（如果没有消息返回，则阻挡一些时间）
+     *
      * @param mq
      * @param subExpression
      * @param offset
@@ -136,6 +156,8 @@ public interface MQPullConsumer extends MQConsumer {
     /**
      * Pulling the messages through callback function,if no message arrival,blocking.
      *
+     * 通过回调函数拉取消息（如果没有消息返回，直接阻止）
+     *
      * @param mq
      * @param subExpression
      * @param offset
@@ -151,6 +173,8 @@ public interface MQPullConsumer extends MQConsumer {
 
     /**
      * Update the offset
+     *
+     * 更新消息偏离值（消费进度更新）
      *
      * @param mq
      * @param offset

@@ -28,12 +28,16 @@ public interface MQPushConsumer extends MQConsumer {
     /**
      * Start the consumer
      *
+     * 启动消费者，初始化默认推送消费者
+     *
      * @throws MQClientException
      */
     void start() throws MQClientException;
 
     /**
      * Shutdown the consumer
+     *
+     * 关闭消费者，
      */
     void shutdown();
 

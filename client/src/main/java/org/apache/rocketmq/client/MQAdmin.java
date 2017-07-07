@@ -24,10 +24,14 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
 
 /**
  * Base interface for MQ management
+ *
+ * MQ管理基础接口
  */
 public interface MQAdmin {
     /**
      * Creates an topic
+     *
+     * 创建Topic
      *
      * @param key accesskey
      * @param newTopic topic name
@@ -62,6 +66,8 @@ public interface MQAdmin {
 
     /**
      * Gets the max offset
+     *
+     * 获取最大偏移量
      *
      * @param mq Instance of MessageQueue
      * @return the max offset

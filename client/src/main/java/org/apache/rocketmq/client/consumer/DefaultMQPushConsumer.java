@@ -44,11 +44,14 @@ import java.util.Set;
  * In most scenarios, this is the mostly recommended class to consume messages.
  * </p>
  *
+ * 在大多数情况下，这是消费消息的主要推荐类。
  *
  * Technically speaking, this push client is virtually a wrapper of the underlying pull service. Specifically, on
  * arrival of messages pulled from brokers, it roughly invokes the registered callback handler to feed the messages.
  * </p>
  *
+ * 从技术上讲，这个推送客户端实际上是一个潜在的拉服务的包装。 具体来说，
+ * 从broker拉取的信息到达，大致调用已注册的回调处理器来获取信息的。
  *
  * See quickstart/Consumer in the example module for a typical usage.
  * </p>

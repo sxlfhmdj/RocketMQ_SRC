@@ -37,13 +37,18 @@ import java.util.Set;
 /**
  * Default pulling consumer
  *
+ * 默认拉取消费者
  */
 public class DefaultMQPullConsumer extends ClientConfig implements MQPullConsumer {
+    /** 不做序列化*/
     protected final transient DefaultMQPullConsumerImpl defaultMQPullConsumerImpl;
 
     /**
      * Do the same thing for the same Group, the application must be set,and
      * guarantee Globally unique
+     *
+     * 消费组里的成员都是做相同的事情，程序必须设置组名而且是全局唯一
+     *
      */
     private String consumerGroup;
     /**
@@ -62,6 +67,8 @@ public class DefaultMQPullConsumer extends ClientConfig implements MQPullConsume
     private long consumerPullTimeoutMillis = 1000 * 10;
     /**
      * Consumption pattern,default is clustering
+     *
+     * 消费模式，默认为集群消费
      */
     private MessageModel messageModel = MessageModel.CLUSTERING;
     /**
@@ -70,6 +77,8 @@ public class DefaultMQPullConsumer extends ClientConfig implements MQPullConsume
     private MessageQueueListener messageQueueListener;
     /**
      * Offset Storage
+     *
+     * 消费进度仓储
      */
     private OffsetStore offsetStore;
     /**
@@ -91,6 +100,12 @@ public class DefaultMQPullConsumer extends ClientConfig implements MQPullConsume
         this(MixAll.DEFAULT_CONSUMER_GROUP, null);
     }
 
+    /**
+     * 构造DefaultMQPullConsumer时，将构造对象放入了impl中,并实现
+     *
+     * @param consumerGroup
+     * @param rpcHook
+     */
     public DefaultMQPullConsumer(final String consumerGroup, RPCHook rpcHook) {
         this.consumerGroup = consumerGroup;
         defaultMQPullConsumerImpl = new DefaultMQPullConsumerImpl(this, rpcHook);
