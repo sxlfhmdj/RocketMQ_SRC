@@ -1,2 +1,9 @@
 # RocketMQ_SRC
 RocketMQ源码分析
+#术语
+## 主题（Topic）
+一个Topic是一个主题。一个系统中，我们可以将消息划成Topic，这样，将不同的消息发送到不同的queue
+## 队列（queue）
+一个topic下，我们可以设置多个queue，每个queue就是我们平时说的消息队列。queue完全从属于某个特定的topic的，所以当我们要发送消息时，总要指定该消息所属的topic。
+## 消费进度（offset）
+消费进度是指，当一个consumer group里的consumer在消费某个queue里的消息时，equeue是通过记录消费位置（offset）来指导当前消费到哪里了。以便该consumer重启后继续从该位置开始消费。比如一个topic有四个queue，一个consumer group有四个consumer，则每个consumer分配到一个queue，然后每个consumer分别消费自己的queue里的消息。equeue会分别记录每个consumer对其queue的消费进度，从而保证每个consumer重启后知道下次从哪里开始继续消费。实际上，也许下次重启后不是由该consumer消费该queue了，而是由group里的其他consumer消费了，这样也没关系，因为我们已经记录了这个queue的消费位置了。可以看出，消费位置与consumer无关，消费位置完全是queue的一个属性，用来记录当前被消费到哪里。重要的一点，一个topic可以被多个consumer group里的consumer订阅。不同consumer group里的consumer即便是消费同一个topic下的同一个queue，那消息进度也是分开存储的。不同的consumer group内的consumer的消费完全隔离，彼此不受影响。对于集群消费和广播消费，消费进度持久化的地方是不同的，集群消费的消费进度是放在broker，也就是消息队列服务器上的，而广播消费的消费进度是存放在consumer本地磁盘上的。
